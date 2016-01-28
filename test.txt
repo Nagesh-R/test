@@ -1,0 +1,58 @@
+USE [welcomgroup]
+GO
+/****** Object:  StoredProcedure [hotels].[SP_InsertPlanDescDetails]    Script Date: 28-01-2016 07:32:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER Procedure [hotels].[SP_InsertPlanDescDetails]       
+@idHotel numeric(9),@Code_plan varchar(5),@Desc_plan varchar(50),@Flg_del char(1),@code_classification char(1),      
+@date_sellstart varchar(50)=NULL,@date_sellend varchar(50)=NULL,@no_advdays varchar(50)=NULL,@no_minlos varchar(50),      
+@no_maxlos varchar(50)=NULL,@text_content1 varchar(8000),@Flg_avlday1 char(1),@Flg_avlday2 char(1),@Flg_avlday3 char(1),      
+@Flg_avlday4 char(1),@Flg_avlday5 char(1),@Flg_avlday6 char(1),@Flg_avlday7 char(1),@Flg_arrday1 char(1),      
+@Flg_arrday2 char(1),@Flg_arrday3 char(1),@Flg_arrday4 char(1),@Flg_arrday5 char(1),@Flg_arrday6 char(1),      
+@Flg_arrday7 char(1),@isStrikeout char(1),@DepositType char(1) = null,@CancelType char(1) = null,@DepositValue int = 0,      
+@CancelValue int = 0,@CancelDays int = 0,@CancelTime varchar(5) = null,@Thumbnail varchar(100),@Theme varchar(7),      
+@Priority int,@rate_code varchar(5),@Terms varchar(5000),@plan_promo bit,@lstModUsr varchar(10),@RestrictedPlan CHAR(1),    
+@Flg_FreeNight CHAR(1),@IsApplicableTo VARCHAR (1) = 'B',@addInclusion varchar(2),@promoCode varchar(45)     
+AS      
+BEGIN             
+Declare @strIDPlan int      
+            
+if @no_advdays =''      
+set @no_advdays=null      
+if @no_maxlos=''      
+set @no_maxlos=null      
+INSERT INTO b_plan(id_Hotel,Code_plan ,Desc_plan,Flg_del,code_classification,date_sellstart,date_sellend,      
+no_advdays,no_minlos,no_maxlos,text_content1,Flg_avlday1,Flg_avlday2,Flg_avlday3,Flg_avlday4,Flg_avlday5,Flg_avlday6,      
+Flg_avlday7,Flg_arrday1,Flg_arrday2,Flg_arrday3,Flg_arrday4,Flg_arrday5,Flg_arrday6,Flg_arrday7,      
+isStrikeout,DepositType,CancelType,DepositValue,CancelValue,CancelDays,CancelTime,Thumbnail,Theme,no_priority,rate_code,      
+plan_terms,plan_promo,RestrictedPlan,Flg_FreeNight,Lst_mod_usr,Moddt,IsApplicableTo,soft_delete,addInclusion,promo_code)       
+VALUES(@idHotel,@Code_plan,@Desc_plan,@Flg_del,@code_classification,@date_sellstart,@date_sellend,@no_advdays,      
+@no_minlos,@no_maxlos,@text_content1,@Flg_avlday1,@Flg_avlday2,@Flg_avlday3,@Flg_avlday4,@Flg_avlday5,@Flg_avlday6,      
+@Flg_avlday7,@Flg_arrday1,@Flg_arrday2,@Flg_arrday3,@Flg_arrday4,@Flg_arrday5,@Flg_arrday6,@Flg_arrday7,       
+@isStrikeout,@DepositType,@CancelType,@DepositValue,@CancelValue,@CancelDays,@CancelTime,@Thumbnail,@Theme,@Priority,      
+@rate_code,@Terms,@plan_promo,@RestrictedPlan,@Flg_FreeNight,@lstModUsr,getdate(),@IsApplicableTo,'N',@addInclusion,@promoCode)            
+            
+            
+Set @strIDPlan = (Select @@identity)             
+            
+            
+INSERT INTO b_plan_audit(id_plan,id_Hotel,Code_plan ,Desc_plan,Flg_del,code_classification,date_sellstart,date_sellend,      
+no_advdays,no_minlos,no_maxlos,text_content1,Flg_avlday1,Flg_avlday2,Flg_avlday3,Flg_avlday4,Flg_avlday5,Flg_avlday6,      
+Flg_avlday7,Flg_arrday1,Flg_arrday2,Flg_arrday3,Flg_arrday4,Flg_arrday5,Flg_arrday6,Flg_arrday7,      
+isStrikeout,DepositType,CancelType,DepositValue,CancelValue,CancelDays,CancelTime,Thumbnail,Theme,no_priority,rate_code,      
+plan_terms,plan_promo,RestrictedPlan,Flg_FreeNight,Lst_mod_usr,Moddt,IsApplicableTo,actionby,addInclusion,promo_code)       
+VALUES(@strIDPlan,@idHotel,@Code_plan,@Desc_plan,@Flg_del,@code_classification,@date_sellstart,@date_sellend,@no_advdays,      
+@no_minlos,@no_maxlos,@text_content1,@Flg_avlday1,@Flg_avlday2,@Flg_avlday3,@Flg_avlday4,@Flg_avlday5,@Flg_avlday6,      
+@Flg_avlday7,@Flg_arrday1,@Flg_arrday2,@Flg_arrday3,@Flg_arrday4,@Flg_arrday5,@Flg_arrday6,@Flg_arrday7,       
+@isStrikeout,@DepositType,@CancelType,@DepositValue,@CancelValue,@CancelDays,@CancelTime,@Thumbnail,@Theme,@Priority,      
+@rate_code,@Terms,@plan_promo,@RestrictedPlan,@Flg_FreeNight,@lstModUsr,getdate(),@IsApplicableTo,'Insert',@addInclusion,@promoCode)              
+       
+return '2'             
+       
+END
+
+
