@@ -1,58 +1,52 @@
 USE [welcomgroup]
 GO
-/****** Object:  StoredProcedure [hotels].[SP_InsertPlanDescDetails]    Script Date: 28-01-2016 07:32:14 ******/
+/****** Object:  StoredProcedure [hotels].[SP_InsertReservationDetail]    Script Date: 01-02-2016 02:21:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+ALTER procedure [hotels].[SP_InsertReservationDetail] 
+@guestId bigint,
+	
+	@bookingStatus [varchar](50),
+	@hotelName [varchar](50),
+	@hotelAddress1 [varchar](100),
+	@hotelAddress2 [varchar](100),
+	@hotelContact [varchar](100),
+	@hotelId [varchar](18),
+	@roomId [varchar](18),
+	@roomName [varchar](50),
+	@planId [varchar](18),
+	@planName [varchar](100),
+	@checkinDate [varchar](20),
+	@checkoutDate [varchar](20),
+	@durationOfStay [numeric](18, 0),
+	@numberOfRooms [numeric](10, 0),
+	@numberOfAdults [numeric](10, 0),
+	@numberOfChildrens [numeric](10, 0),
+	@ratePlanName [varchar](100),
+	@guestTitle [varchar](100),
+	@guestFirstName [varchar](100),
+	@guestLastName [varchar](100),
+	@guestAddress1 [varchar](100),
+	@guestAddress2 [varchar](100),
+	@guestPhoneNumber [varchar](20),
+	@guestEmailId [varchar](50),
+	@totalAmount [numeric](18, 2),
+	@amountPaid [numeric](18, 2),
+	@balanceAmount [numeric](18, 2),
+	@totalPoints [numeric](18, 0),
+	@totalPointsDeducted [numeric](18, 0),
+	@luxuryTax [numeric](10, 2),
+	@serviceTax [numeric](10, 2),
+	@vat [numeric](10, 2),
+	@totalTax [numeric](18, 2),
+	@PRN [varchar](100),
+	@BID [varchar](100),
+	@PID [varchar](100),
+	@txnDate [varchar](20),
+	@hotelType [varchar](50)
+AS
 
-
-ALTER Procedure [hotels].[SP_InsertPlanDescDetails]       
-@idHotel numeric(9),@Code_plan varchar(5),@Desc_plan varchar(50),@Flg_del char(1),@code_classification char(1),      
-@date_sellstart varchar(50)=NULL,@date_sellend varchar(50)=NULL,@no_advdays varchar(50)=NULL,@no_minlos varchar(50),      
-@no_maxlos varchar(50)=NULL,@text_content1 varchar(8000),@Flg_avlday1 char(1),@Flg_avlday2 char(1),@Flg_avlday3 char(1),      
-@Flg_avlday4 char(1),@Flg_avlday5 char(1),@Flg_avlday6 char(1),@Flg_avlday7 char(1),@Flg_arrday1 char(1),      
-@Flg_arrday2 char(1),@Flg_arrday3 char(1),@Flg_arrday4 char(1),@Flg_arrday5 char(1),@Flg_arrday6 char(1),      
-@Flg_arrday7 char(1),@isStrikeout char(1),@DepositType char(1) = null,@CancelType char(1) = null,@DepositValue int = 0,      
-@CancelValue int = 0,@CancelDays int = 0,@CancelTime varchar(5) = null,@Thumbnail varchar(100),@Theme varchar(7),      
-@Priority int,@rate_code varchar(5),@Terms varchar(5000),@plan_promo bit,@lstModUsr varchar(10),@RestrictedPlan CHAR(1),    
-@Flg_FreeNight CHAR(1),@IsApplicableTo VARCHAR (1) = 'B',@addInclusion varchar(2),@promoCode varchar(45)     
-AS      
-BEGIN             
-Declare @strIDPlan int      
-            
-if @no_advdays =''      
-set @no_advdays=null      
-if @no_maxlos=''      
-set @no_maxlos=null      
-INSERT INTO b_plan(id_Hotel,Code_plan ,Desc_plan,Flg_del,code_classification,date_sellstart,date_sellend,      
-no_advdays,no_minlos,no_maxlos,text_content1,Flg_avlday1,Flg_avlday2,Flg_avlday3,Flg_avlday4,Flg_avlday5,Flg_avlday6,      
-Flg_avlday7,Flg_arrday1,Flg_arrday2,Flg_arrday3,Flg_arrday4,Flg_arrday5,Flg_arrday6,Flg_arrday7,      
-isStrikeout,DepositType,CancelType,DepositValue,CancelValue,CancelDays,CancelTime,Thumbnail,Theme,no_priority,rate_code,      
-plan_terms,plan_promo,RestrictedPlan,Flg_FreeNight,Lst_mod_usr,Moddt,IsApplicableTo,soft_delete,addInclusion,promo_code)       
-VALUES(@idHotel,@Code_plan,@Desc_plan,@Flg_del,@code_classification,@date_sellstart,@date_sellend,@no_advdays,      
-@no_minlos,@no_maxlos,@text_content1,@Flg_avlday1,@Flg_avlday2,@Flg_avlday3,@Flg_avlday4,@Flg_avlday5,@Flg_avlday6,      
-@Flg_avlday7,@Flg_arrday1,@Flg_arrday2,@Flg_arrday3,@Flg_arrday4,@Flg_arrday5,@Flg_arrday6,@Flg_arrday7,       
-@isStrikeout,@DepositType,@CancelType,@DepositValue,@CancelValue,@CancelDays,@CancelTime,@Thumbnail,@Theme,@Priority,      
-@rate_code,@Terms,@plan_promo,@RestrictedPlan,@Flg_FreeNight,@lstModUsr,getdate(),@IsApplicableTo,'N',@addInclusion,@promoCode)            
-            
-            
-Set @strIDPlan = (Select @@identity)             
-            
-            
-INSERT INTO b_plan_audit(id_plan,id_Hotel,Code_plan ,Desc_plan,Flg_del,code_classification,date_sellstart,date_sellend,      
-no_advdays,no_minlos,no_maxlos,text_content1,Flg_avlday1,Flg_avlday2,Flg_avlday3,Flg_avlday4,Flg_avlday5,Flg_avlday6,      
-Flg_avlday7,Flg_arrday1,Flg_arrday2,Flg_arrday3,Flg_arrday4,Flg_arrday5,Flg_arrday6,Flg_arrday7,      
-isStrikeout,DepositType,CancelType,DepositValue,CancelValue,CancelDays,CancelTime,Thumbnail,Theme,no_priority,rate_code,      
-plan_terms,plan_promo,RestrictedPlan,Flg_FreeNight,Lst_mod_usr,Moddt,IsApplicableTo,actionby,addInclusion,promo_code)       
-VALUES(@strIDPlan,@idHotel,@Code_plan,@Desc_plan,@Flg_del,@code_classification,@date_sellstart,@date_sellend,@no_advdays,      
-@no_minlos,@no_maxlos,@text_content1,@Flg_avlday1,@Flg_avlday2,@Flg_avlday3,@Flg_avlday4,@Flg_avlday5,@Flg_avlday6,      
-@Flg_avlday7,@Flg_arrday1,@Flg_arrday2,@Flg_arrday3,@Flg_arrday4,@Flg_arrday5,@Flg_arrday6,@Flg_arrday7,       
-@isStrikeout,@DepositType,@CancelType,@DepositValue,@CancelValue,@CancelDays,@CancelTime,@Thumbnail,@Theme,@Priority,      
-@rate_code,@Terms,@plan_promo,@RestrictedPlan,@Flg_FreeNight,@lstModUsr,getdate(),@IsApplicableTo,'Insert',@addInclusion,@promoCode)              
-       
-return '2'             
-       
-END
-
-
+Insert into ReservationDetails (Guest_Id,Booking_Status,Hotel_Name,Hotel_Address1,Hotel_Address2,Hotel_Contact,Hotel_Id,Room_Id,Room_Name,Plan_Id,Plan_Name,Checkin_Date,Checkout_Date,Duration_Of_Stay,Number_Of_Rooms,Number_Of_Adults,Number_Of_Childrens,Rate_Plan_Name,Guest_Title,Guest_First_Name,Guest_Last_Name,Guest_Address1,Guest_Address2,Guest_Phone_Number,Guest_Email_Id,Total_Amount,Amount_Paid,Balance_Amount,Total_Points,Total_Points_Deducted,Luxury_Tax,Service_Tax,Vat,Total_Tax,PRN,BID,PID,Txn_Date,hotel_type,created_time)
+values(@guestId,@bookingStatus,@hotelName,@hotelAddress1,@hotelAddress2,@hotelContact,@hotelId,@roomId,@roomName,@planId,@planName,@checkinDate,@checkoutDate,@durationOfStay,@numberOfRooms,@numberOfAdults,@numberOfChildrens,@ratePlanName,@guestTitle,@guestFirstName,@guestLastName,@guestAddress1,@guestAddress2,@guestPhoneNumber,@guestEmailId,@totalAmount,@amountPaid,@balanceAmount,@totalPoints,@totalPointsDeducted,@luxuryTax,@serviceTax,@vat,@totalTax,@PRN,@BID,@PID,@txnDate,@hotelType,getdate())
