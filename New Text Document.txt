@@ -1,40 +1,27 @@
 USE [welcomgroup]
 GO
-/****** Object:  StoredProcedure [hotels].[SP_GetAllHotelDetailBYLocationID]    Script Date: 23-02-2016 02:40:51 ******/
+/****** Object:  StoredProcedure [hotels].[ITCOnline_getAllDestinations]    Script Date: 23-02-2016 05:06:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [hotels].[ITCOnline_getAllDestinations] 
+	
+AS
+BEGIN
+	select distinct wl.id_location as id_location,wl.desc_location as desc_location     
+	from w_brand_listing wbl,w_hotel wh,w_location_hotel wlh,w_location wl where wbl.list_flag='Y'     
+	and wh.flg_booking='Y' and wbl.id_hotelcat=wh.id_hotelcat and wh.id_hotel=wlh.id_hotel and
+	wlh.id_location=wl.id_location and wh.id_hotelcat in ('2','3','4','9') order by wl.desc_location;
+	
+	select distinct id_hotel, name_hotel from w_hotel where id_hotelcat in ('2','3','4','9');
+	
+	select wl.id_location,wh.airport_name from [welcomgroup].[dbo].[w_hotel] wh inner join [welcomgroup].[dbo].[w_location] wl 
+    on wh.desc_location = wl.desc_location where wh.airport_name is not null and wh.id_hotelcat in ('2','3','4','9');
 
-ALTER PROCEDURE [hotels].[SP_GetAllHotelDetailBYLocationID] --6
-@id_Location numeric              
-As              
-Begin          
-if (@id_Location=1)      
-BEGIN      
- select wh.id_hotel,wh.id_hotelcat,name_hotel, name_hotellname,address_hotel,phone_hotel,fax_hotel,telex_hotel,email_hotel,text_Content1,text_Content2,              
- text_Content3,text_contentloc,flg_booking,no_image,fileloc_imageloc ,wl.desc_location ,wh.id_hotelcat, wh.airport_distance           
- from w_brand_listing wbl,w_hotel wh,w_location_hotel wlh,w_location wl where (wbl.list_flag='Y' or wh.id_hotel=304)   and  
- (wh.flg_booking='Y' or (wh.flg_booking in('N') and wh.id_hotel=304))          
- and wbl.id_hotelcat=wh.id_hotelcat and wh.id_hotel=wlh.id_hotel and wlh.id_location=wl.id_location  and wl.id_location=@id_Location and wh.id_hotelcat in ('2','3','4','9')            
- order by wh.name_hotel      
-END      
-else if (@id_Location=3)          
-BEGIN          
- select wh.id_hotel,wh.id_hotelcat,name_hotel, name_hotellname,address_hotel,phone_hotel,fax_hotel,telex_hotel,email_hotel,text_Content1,text_Content2,                  
- text_Content3,text_contentloc,flg_booking,no_image,fileloc_imageloc ,wl.desc_location,wh.id_hotelcat , wh.airport_distance                
- from w_brand_listing wbl,w_hotel wh,w_location_hotel wlh,w_location wl where (wbl.list_flag='Y' or wh.id_hotel=427)   and      
- (wh.flg_booking='Y' or (wh.flg_booking in('N') and wh.id_hotel=427))              
- and wbl.id_hotelcat=wh.id_hotelcat and wh.id_hotel=wlh.id_hotel and wlh.id_location=wl.id_location  and wl.id_location=@id_Location and wh.id_hotelcat in ('2','3','4','9')                
- order by wh.name_hotel          
-END        
-else     
-BEGIN      
- select wh.id_hotel,wh.id_hotelcat,name_hotel, name_hotellname,address_hotel,phone_hotel,fax_hotel,telex_hotel,email_hotel,text_Content1,text_Content2,              
- text_Content3,text_contentloc,flg_booking,no_image,fileloc_imageloc ,wl.desc_location ,wh.id_hotelcat, wh.airport_distance            
- from w_brand_listing wbl,w_hotel wh,w_location_hotel wlh,w_location wl where (wbl.list_flag='Y' or wh.id_hotel=427)   and  
- (wh.flg_booking='Y' or (wh.flg_booking in('N') and wh.id_hotel=427))           
- and wbl.id_hotelcat=wh.id_hotelcat and wh.id_hotel=wlh.id_hotel and wlh.id_location=wl.id_location  and wl.id_location=@id_Location and wh.id_hotelcat in ('2','3','4','9')            
- order by wl.desc_location            
-END                    
-End
+END
