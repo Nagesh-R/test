@@ -623,8 +623,10 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
     }
 
     $scope.refineYourSearch=function(){
+		$scope.hotelSearchResultsForFilters=JSON.parse(localStorage.getItem('hotelSearchResults'));
 		var brandsToFilter=[];
 		var hotels=[];
+
 
         if($scope.itcHotels == true){
             //$scope.brandFilter={hotelCategory : "O"};
@@ -646,9 +648,10 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
         }
         if($scope.allHotelBrands == true){
            brandsToFilter=[];
-           $scope.hotelSearchResults=$scope.hotelSearchResultsForFilters;
+           $scope.hotelSearchResults=JSON.parse(localStorage.getItem('hotelSearchResults'));
         }
         if(brandsToFilter.length > 0){
+            $scope.hotelSearchResultsForFilters=JSON.parse(localStorage.getItem('hotelSearchResults'));
             if(brandsToFilter.length == 1){
                 $.each($scope.hotelSearchResultsForFilters.data.hotels,function (index, value){
                     var filter = brandsToFilter[0];
