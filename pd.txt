@@ -1,0 +1,389 @@
+
+<div class="wrapper hideForMenu">
+    <!-- Hotel detail start /-->
+
+
+    <!-- htlDtlCntIn started /-->
+    <div class="htlDtlCntIn clearfix personalDetails">
+        <!-- hotelLeft started /-->
+        <div class="hotelLeft">
+            <div class="nmst clearfix" style="display:none;">
+                <p class="nmstTxt">Namaste</p>
+                <p class="font22Bl fL">Mr. T. Srinivasa Varadhan Jagannathan</p>
+                <p class="font22Bl fR">2,22,222 <span class="font14Bl nmstTxt2">Club ITC Green Points</span></p>
+            </div>
+            <div class="clear"></div>
+            <div class="yourSelReftWrp yrslk fxSUmry">
+                <div class="yourSelCont clearfix ">
+                    <!-- hotLefInn started /-->
+                    <div class="hotLefInn clearfix">
+                        <p class="font22Bl act" onclick="$(this).next().slideToggle(); $(this).toggleClass('act');">YOUR STAY SUMMARY <span class="plsIc2"></span></p>
+                        <!-- fxSmWp Started -->
+                        <div class="fxSmWp">
+                            <!--htlInConT Started-->
+                            <div class="htlInConT">
+                                <div class="sumTxt"><p><label>Hotel:</label><span class="font16Bl">{{hotelName}}</span></p></div>
+                                <div class="chInOut">
+                                    <p><label>Check In:</label><span class="font16Bl">{{checkinMonth}} {{checkinDay}}, {{checkinYear}}</span></p>
+                                    <p><label>Check Out:</label> <span class="font16Bl">{{checkOutMonth}} {{checkOutDay}}, {{checkOutYear}}</span></p>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="slctnDtl clearfix">
+                                    <p><label>Room:</label><span class="font16Bl">{{roomCount}}</span></p>
+                                    <p><label>Adult:</label><span class="font16Bl">{{adultCount}}</span></p>
+                                    <p><label>Children:</label><span class="font16Bl">{{childrenCount}}</span></p>
+                                </div>
+
+                                <div class="rmTyPln">
+                                    <p><label>Room Type: </label><span class="font16Bl">{{roomName}}</span></p>
+                                    <p><label>Rate Plan: </label><span class="font16Bl">{{ratePlanName}}</span></p>
+                                </div>
+
+                                <div class="clear"></div>
+                                <!--inclsWp Started -->
+                                <div class="inclsWp">
+                                    <a href="javascript:;" onclick="$(this).next().slideToggle(); $(this).toggleClass('act');" class="lnkGold"><span class="gldPlusIc"></span>Inclusions</a>
+                                    <div class="inIncls">
+                                        <p>Breakfast</p>
+                                        <p>Wi-Fi</p>
+                                        <p>500 Club ITC Green Points</p>
+                                        <p>INR 4000 Hotel Credit*</p>
+                                        <p>20% discount on Food & Beverages</p>
+                                        <p>Spa & Salon services</p>
+                                        <p>Late Check-out till 4pm</p>
+                                        <p>INR 500 Gift certificate.</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <!--inclsWp Started -->
+                            </div>
+                            <!--htlInConT Started-->
+                            <div class="adOnWp">
+                                <p class="font16Bl">Add Ons:</p>
+                                <ul class="inAdO">
+                                    <li ng-repeat="(key,value) in customizeAddOn"><p>{{key}}</p><a href="javascript:;" ng-click="removeThisAddOn(key)">Remove</a></li>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="clear"></div>
+                            <div class="yrBkAmtWpr clearfix">
+                                <div class="yrBkHd clearfix">
+                                    <p class="prcHd">Total</p>
+                                    <p class="tlPrcHd"><span class="WebRupee">Rs.</span>{{totalAmount}}</p>
+                                </div>
+                            </div>
+
+                            <div class="amtDtWp">
+                                <a href="javascript:;" onclick="$(this).closest('.amtDtWp').find('.amtDInWp').slideToggle(); $(this).toggleClass('act');" class="lnkGold"><span class="gldPlusIc"></span>Amount Details</a>
+                                <div class="clear"></div>
+                                <div class="amtDInWp clearfix">
+                                    <div class="yrBkAmtWpr clearfix">
+                                        <div class="yrBkHd clearfix">
+                                            <p class="prcHd">Room Amount:</p>
+                                            <p class="tlPrcHd"><span class="WebRupee">Rs.</span>40,000</p>
+                                        </div>
+                                        <ul class="ptRdblWpr clearfix">
+                                            <li>
+                                                <p class="mtDt">Feb 20, 2015</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>20,000</p>
+                                            </li>
+                                            <li>
+                                                <p class="mtDt"> Feb 21, 2015</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>20,000</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="yrBkAmtWpr clearfix">
+                                        <div class="yrBkHd clearfix">
+                                            <p class="prcHd">Add On Total Amount</p>
+                                            <p class="tlPrcHd"><span class="WebRupee">Rs.</span>2,500</p>
+                                        </div>
+                                        <ul class="ptRdblWpr clearfix">
+                                            <li>
+                                                <p class="mtDt">Airport Transfer</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>1000</p>
+                                            </li>
+                                            <li>
+                                                <p class="mtDt">24 Hr. Internet Plan</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>600</p>
+                                            </li>
+                                            <li>
+                                                <p class="mtDt"> Dinner</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>900</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="yrBkAmtWpr clearfix">
+                                        <div class="yrBkHd clearfix">
+                                            <p class="prcHd">Total Taxes</p>
+                                            <p class="tlPrcHd"><span class="WebRupee">Rs.</span>5,000</p>
+                                        </div>
+                                        <ul class="ptRdblWpr clearfix">
+                                            <li>
+                                                <p class="mtDt">Luxury tax @ 10%</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>2,000</p>
+                                            </li>
+                                            <li>
+                                                <p class="mtDt"> Service Tax @ 7.42%</p>
+                                                <p class="amt"><span class="WebRupee">Rs.</span>3,000</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="yrBkAmtWpr dpAmPy clearfix">
+                                        <div class="yrBkHd clearfix">
+                                            <p class="prcHd">Deposite Amount Payable</p>
+                                            <p class="tlPrcHd"><span class="WebRupee">Rs.</span>47,500</p>
+                                        </div>
+                                    </div>
+
+                                    <a href="#" class="lnkGold">Deposit Policy</a>
+                                    <a href="#" class="lnkGold">Cancellation and Refund Policy</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- fxSmWp End -->
+                    </div>
+                    <!-- hotLefInn end /-->
+                </div>
+            </div>
+
+        </div>
+        <!-- hotelLeft end /-->
+
+        <!-- hotelRight started /-->
+        <div class="hotelRight">
+            <div class="htlDtl clearfix">
+                <p class="font1_2em fL">PERSONAL DETAILS</p>
+                <p class="font1_2em fR">Step 4 of 5</p>
+            </div>
+            <div class="clear"></div>
+
+            <!-- perDetWrp started /-->
+            <div class="perDetWrp">
+                <!-- inputUl started /-->
+                <ul class="inputUl clearfix">
+                    <li>
+                        <!-- oneFourWid start /-->
+                        <div class="oneFourWid mB15">
+                            <label class="font16Bl">Title<span class="redClr">&#42;</span></label>
+                            <div class="selcArp">
+                                <input type="text" class="itc_custom_input" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userTitle">
+                                <a class="blkDnIc" href="javascript:;"></a>
+                                <ul class="drpDwn autoSugg">
+                                    <li><a>Mr</a></li>
+                                    <li><a>Ms</a></li>
+                                    <li><a>Mrs</a></li>
+                                    <li><a>Mx</a></li>
+                                    <li><a>Dr</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- oneFourWid end /-->
+
+                        <!-- threeFourWid start /-->
+                        <div class="threeFourWid">
+                            <label class="font16Bl">First Name <span class="redClr">&#42;</span></label>
+                            <input type="text" class="suppInp" ng-model="userFirstName" >
+                        </div>
+                        <!-- threeFourWid end /-->
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">Last Name<span class="redClr">&#42;</span></label>
+                            <input type="text" class="suppInp" ng-model="userLastName">
+                        </div>
+                    </li>
+
+
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">address line 1<span class="redClr">&#42;</span></label>
+                            <input type="text" class="suppInp" ng-model="userAddr1">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">address line 2</label>
+                            <input type="text" class="suppInp" ng-model="userAddr2">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid country">
+                            <label class="font16Bl">country<span class="redClr">&#42;</span></label>
+                            <div class="selcArp">
+                                <input type="text" class="itc_custom_input personalDetails_country" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCountry">
+                                <a class="blkDnIc" href="javascript:;"></a>
+                                <ul class="drpDwn autoSugg customAutoSuggCountries">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid state">
+                            <label class="font16Bl">State<span class="redClr">&#42;</span></label>
+                            <div class="selcArp">
+                                <input type="text" class="itc_custom_input personalDetails_state" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userState">
+                                <a class="blkDnIc" href="javascript:;"></a>
+                                <ul class="drpDwn autoSugg customAutoSuggState">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid city">
+                            <label class="font16Bl">City<span class="redClr">&#42;</span></label>
+                            <div class="selcArp">
+                                <input type="text" class="itc_custom_input personalDetails_city" placeholder="Select"  onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCity">
+                                <a class="blkDnIc" href="javascript:;"></a>
+                                <ul class="drpDwn autoSugg customAutoSuggCity">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">pin code<span class="redClr">&#42;</span></label>
+                            <input type="text" class="suppInp personalDetails_mobStdCode" ng-model="userPincode">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">Company Name</label>
+                            <input type="text" class="suppInp" ng-model="userCompanyName">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">Email<span class="redClr">&#42;</span></label>
+                            <input type="text" class="suppInp" ng-model="userEmailId">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid socialHand">
+                            <label class="font16Bl">social handles</label>
+                            <!-- tolTip Started -->
+                            <div class="tolTip">
+                                <a href="javascript:;" class="helpIc tabPagJs" onclick=" event.stopPropagation(); $('#hvrCont').show();  window.setTimeout( function () { $('#hvrCont').hide(); } , 5000);"></a>
+                                <div class="hvrCont pgPopUp" id="hvrCont">
+                                    <div class="ttLfAr"></div>
+                                    <div class="inHvCont">ITC Hotels assures you of never sharing these details with any third party source. Neither will any representative of ITC Hotels spam you on your social profile.  These details will solely be used to offer a superlative experience before, during and after your stay.
+                                        Sharing your social credentials will also give you the oportunity to win exciting rewards from ITC Hotels  from time to time.</div>
+                                </div>
+                            </div>
+                            <!-- tolTip End -->
+                            <input type="text" class="suppInp mT0" placeholder="Facebook" ng-model="userFacebookId">
+                            <input type="text" class="suppInp" placeholder="Twitter" ng-model="userTwitterId">
+                            <input type="text" class="suppInp" placeholder="Instagram" ng-model="userInstagramId">
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="fullWid">
+                            <label class="font16Bl">Mobile<span class="redClr">*</span></label>
+                            <div class="oneFourWid">
+                                <input type="text" class="suppInp" value="+91" ng-model="userMobStdCode">
+                            </div>
+                            <div class="threeFourWid">
+                                <input type="text" class="suppInp" ng-model="userMobileNumber">
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <!-- inputUl end /-->
+                <div class="clear"></div>
+
+                <div class="perDetInn">
+                    <div class="errorCont1">
+
+                    </div>
+
+                    <p class="font16Bl">Note: The confirmation of the booking will be sent on your email.</p>
+                    <!-- wid100 started /-->
+                    <div class="wid100 clearfix">
+                        <div class="inpLabWrp">
+                            <input type="checkBox" id="chk" class="" ng-model="PersonalDetailsCreateAcount">
+                            <label for="chk" class="lab2" >For an enhanced user experience, create an account</label>
+                        </div>
+                        <a href="#" class="lnkGold">Benefits of creating an account</a>
+                        <div class="clear"></div>
+
+                    </div>
+                    <!-- wid100 end /-->
+
+                    <!-- wid100 started /-->
+                    <div class="wid100 clearfix">
+                        <div class="errorCont clearfix" style="display:none;">
+                            <div class="errwp">
+                                <div class="alrtIc"></div>
+                                <p>IThis Email ID is already registered with us.  </p>
+                            </div>
+                            <div class="clear"></div>
+                            <a href="#" class="lnkGold">Forgot Password?</a>
+                        </div>
+                    </div>
+                    <!-- wid100 end /-->
+
+                    <div class="clear"></div>
+                    <!-- wid100 started /-->
+                    <div class="wid100 clearfix" ng-show="PersonalDetailsCreateAcount">
+                        <p class="font16Bl">Your email address will be your username. </p>
+                        <ul class="inputUl pass clearfix">
+                            <li>
+                                <div class="fullWid">
+                                    <label class="font16Bl">password</label>
+                                    <input type="password" class="suppInp" ng-model="personalDetailsPassword">
+                                </div>
+                            </li>
+                            <li>
+                                <div class="fullWid">
+                                    <label class="font16Bl">retype pasword</label>
+                                    <input type="password" class="suppInp" ng-model="personalDetailsRePassword" ng-true-value="'true'" ng-false-value="'false'">
+                                </div>
+                            </li>
+                        </ul>
+
+                        <p class="font14Bl">Note: A verification link will be sent to your registered email address. Click on the link to activate your ITC Hotels Account</p>
+                        <div class="perDetInn">
+                            <div class="errorCont2">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- wid100 end /-->
+
+                </div>
+            </div>
+            <!-- perDetWrp end /-->
+            <a class="btn6" ng-click="redirectToSummaryPage()">Continue Booking</a>
+        </div>
+        <!-- hotelRight end /-->
+
+
+    </div>
+    <!-- htlDtlCntIn end /-->
+
+
+
+
+    <!-- Hotel detail end /-->
+</div>
+

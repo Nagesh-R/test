@@ -707,10 +707,23 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
                 });
                 $scope.hotelSearchResults.data.hotels=hotels;
             }
+        }else{
+            $scope.hotelSearchResults=JSON.parse(localStorage.getItem('hotelSearchResults'));
         }
 
-
-        if($scope.airportDistance15==true && !($scope.airportDistance30==false && $scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
+        if($scope.airportDistance15==undefined){
+            $scope.airportDistance15=false;
+        }
+        if($scope.airportDistance30==undefined){
+            $scope.airportDistance30=false;
+        }
+        if($scope.airportDistanceAbove30==undefined){
+            $scope.airportDistanceAbove30=false;
+        }
+        if($scope.airportDistanceAll==undefined){
+            $scope.airportDistanceAll=false;
+        }
+        if($scope.airportDistance15==true && ($scope.airportDistance30==false && $scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
             var airport1=0;
             var airport2=15;
             var hotels=[];
@@ -721,7 +734,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
             });
             $scope.hotelSearchResults.data.hotels=hotels;
         }
-        if($scope.airportDistance30==true && !($scope.airportDistance15==false && $scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
+        if($scope.airportDistance30==true && ($scope.airportDistance15==false && $scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
             var airport1=15;
             var airport2=30;
             var hotels=[];
@@ -732,7 +745,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
             });
             $scope.hotelSearchResults.data.hotels=hotels;
         }
-        if($scope.airportDistanceAbove30==true && !($scope.airportDistance15==false && $scope.airportDistance30==false &&  $scope.airportDistanceAll==false)){
+        if($scope.airportDistanceAbove30==true && ($scope.airportDistance15==false && $scope.airportDistance30==false &&  $scope.airportDistanceAll==false)){
             var airport1=30;
             //var airport2=30;
             var hotels=[];
@@ -743,7 +756,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
             });
             $scope.hotelSearchResults.data.hotels=hotels;
         }
-        if($scope.airportDistance15==true && $scope.airportDistance30==true && !($scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
+        if($scope.airportDistance15==true && $scope.airportDistance30==true && ($scope.airportDistanceAbove30==false && $scope.airportDistanceAll==false)){
             var airport1=0;
             var airport2=15;
             var airport3=30
@@ -755,7 +768,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
             });
             $scope.hotelSearchResults.data.hotels=hotels;
         }
-        if($scope.airportDistance15==true && $scope.airportDistanceAbove30==true && !( $scope.airportDistance30==false && $scope.airportDistanceAll==false)){
+        if($scope.airportDistance15==true && $scope.airportDistanceAbove30==true && ( $scope.airportDistance30==false && $scope.airportDistanceAll==false)){
             var airport1=0;
             var airport2=15;
             var airport3=30
@@ -767,7 +780,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
             });
             $scope.hotelSearchResults.data.hotels=hotels;
         }
-        if($scope.airportDistance30==true && $scope.airportDistanceAbove30==true && !($scope.airportDistance15==false && $scope.airportDistanceAll==false)){
+        if($scope.airportDistance30==true && $scope.airportDistanceAbove30==true && ($scope.airportDistance15==false && $scope.airportDistanceAll==false)){
             //var airport1=0;
             var airport2=15;
             var airport3=30
@@ -778,6 +791,9 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
                 }
             });
             $scope.hotelSearchResults.data.hotels=hotels;
+        }
+        if(brandsToFilter.length <= 0 && $scope.airportDistanceAll==true){
+            $scope.hotelSearchResults=JSON.parse(localStorage.getItem('hotelSearchResults'));
         }
         /*if($scope.airportDistance30==true){
             airport3=15;
@@ -1942,6 +1958,47 @@ reservationModule.controller('personalDetailsPageController',['$location','$scop
 
 
     //functions to make dropdown work start
+    $('.autoSugg').jScrollPane();
+
+    populateAllCountries();
+
+    function populateAllCountries(){
+        $.each(place.getCountries(),function(i,item){
+            $('.customAutoSuggCountries .jspContainer .jspPane').append('<li><a>'+item+'</a></li>');
+        });
+    }
+    $('.customAutoSuggCountries').blur(function(){
+        $('.personalDetails_state').val("");
+        $('.customAutoSuggState li').remove();
+        if($('.personalDetails_country').val() != ""){
+            $('.personalDetails_mobStdCode').val(place.getCountryMobileCode($('.personalDetails_country').val()));
+            if(place.getStates($('.personalDetails_country').val()) != 'empty'){
+                    $.each(place.getStates($('.personalDetails_country').val()),function(i,item){
+                                $('.customAutoSuggState .jspContainer .jspPane').append('<li><a>'+item+'</a></li>');
+                    });
+            }else{
+                $('.customAutoSuggState li').remove();
+                $('.personalDetails_state').val("");
+                $('.personalDetails_city').val("");
+            }
+        }
+    });
+
+    $('.customAutoSuggState').blur(function(){
+        $('.personalDetails_city').val("");
+        $('.customAutoSuggCity li').remove();
+        if($('.feedback_state').val() != ""){
+            if(place.getCities($('.personalDetails_country').val(),$('.personalDetails_state').val()) != 'empty'){
+                $.each(place.getCities($('.personalDetails_country').val(),$('.personalDetails_state').val()),function(i,item){
+                            $('.customAutoSuggCity .jspContainer .jspPane').append('<li><a>'+item+'</a></li>');
+                });
+            }else{
+                $('.customAutoSuggCity li').remove();
+                $('.personalDetails_city').val("");
+            }
+        }
+    });
+
     $('.itc_custom_input').keyup(function(e) {
 
     		var search = $.trim($(this).val());
@@ -2042,6 +2099,27 @@ reservationModule.controller('personalDetailsPageController',['$location','$scop
     	$(this).parent().parent().find('.autoSugg').jScrollPane();
     	$(this).parent().parent().find('.noresult').hide();
     });//functions to make drop down work end
+
+    //for highlighting on hover
+    $('.autoSugg li').hover(function() {
+        $('.autoSugg:visible li').removeClass('drpAct');
+        $(this).addClass('drpAct');
+    });
+
+    //function to set selected values
+    $scope.capLet=function(arg) {
+    		var currVal =  $('.autoSugg:visible li.drpAct a').text();
+    		$(arg).closest('.autoSugg').parent().find('.itc_custom_input').val(currVal);
+    	}
+    $('.autoSugg li').click(function() {
+    		var currVal = $(this).children('a').text();
+    		$('.autoSugg:visible li').removeClass('drpAct');
+    		$(this).addClass('drpAct');
+    		$scope.capLet(this);
+    		$(this).closest('.autoSugg').hide();
+    		$('.blkDnIc').removeClass('cls');
+    	});
+
 
     $scope.addThisAddOn=function(addOnName,amount)
         {
