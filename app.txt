@@ -391,6 +391,7 @@ reservationModule.controller('hotelSelectionController',['$location','$scope','h
                     localStorage.setItem('rooms',rooms);
                     localStorage.setItem('adults',adults);
                     localStorage.setItem('children',children);
+                    checkedHotelsMap=new Object();
 
 			$location.path('/compareHotels');
         });
