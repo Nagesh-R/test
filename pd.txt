@@ -220,9 +220,29 @@
                         <div class="fullWid country">
                             <label class="font16Bl">country<span class="redClr">&#42;</span></label>
                             <div class="selcArp">
-                                <input type="text" class="itc_custom_input personalDetails_country" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCountry">
+                                <input type="text" class="itc_custom_input" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCountry">
                                 <a class="blkDnIc" href="javascript:;"></a>
-                                <ul class="drpDwn autoSugg customAutoSuggCountries">
+                                <ul class="drpDwn autoSugg">
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
 
                                 </ul>
                             </div>
@@ -233,9 +253,29 @@
                         <div class="fullWid state">
                             <label class="font16Bl">State<span class="redClr">&#42;</span></label>
                             <div class="selcArp">
-                                <input type="text" class="itc_custom_input personalDetails_state" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userState">
+                                <input type="text" class="itc_custom_input" placeholder="Select" onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userState">
                                 <a class="blkDnIc" href="javascript:;"></a>
-                                <ul class="drpDwn autoSugg customAutoSuggState">
+                                <ul class="drpDwn autoSugg">
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
 
                                 </ul>
                             </div>
@@ -246,9 +286,29 @@
                         <div class="fullWid city">
                             <label class="font16Bl">City<span class="redClr">&#42;</span></label>
                             <div class="selcArp">
-                                <input type="text" class="itc_custom_input personalDetails_city" placeholder="Select"  onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCity">
+                                <input type="text" class="itc_custom_input" placeholder="Select"  onclick="event.stopPropagation();" onfocus="$('.selcArp').removeClass('act');  $(this).closest('.selcArp').addClass('act');" ng-model="userCity">
                                 <a class="blkDnIc" href="javascript:;"></a>
-                                <ul class="drpDwn autoSugg customAutoSuggCity">
+                                <ul class="drpDwn autoSugg">
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
+                                    <li><a>Afghanistan</a></li>
+                                    <li><a>Albania</a></li>
+                                    <li><a>Algeria</a></li>
+                                    <li><a>Andorra</a></li>
+                                    <li><a>Angola</a></li>
+                                    <li><a>Antigua & Deps</a></li>
+                                    <li><a>Argentina</a></li>
+                                    <li><a>Armenia</a></li>
+                                    <li><a>Australia</a></li>
+                                    <li><a>Austria</a></li>
 
                                 </ul>
                             </div>
@@ -258,7 +318,7 @@
                     <li>
                         <div class="fullWid">
                             <label class="font16Bl">pin code<span class="redClr">&#42;</span></label>
-                            <input type="text" class="suppInp personalDetails_mobStdCode" ng-model="userPincode">
+                            <input type="text" class="suppInp" ng-model="userPincode">
                         </div>
                     </li>
 
