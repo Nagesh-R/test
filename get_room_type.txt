@@ -1,0 +1,25 @@
+USE [welcomgroup]
+GO
+/****** Object:  StoredProcedure [hotels].[sp_Getroomtype]    Script Date: 03/05/2016 11:58:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER PROC [hotels].[sp_Getroomtype]  
+@HotelID numeric(18,0),
+@isFlag varchar(1)
+AS    
+BEGIN 
+if(@isFlag = 'Y' or @isFlag = 'y')
+begin   
+      select Id_room,Code_room,Desc_room from b_room where id_hotel=@HotelID and UPPER(flg_sale) = 'Y'
+      and No_room > 0 
+end 
+else
+begin
+      select Id_room,Code_room,Desc_room from b_room where id_hotel=@HotelID  
+end 
+END 
