@@ -1,0 +1,36 @@
+USE [welcomgroup]
+GO
+/****** Object:  StoredProcedure [hotels].[SP_GetAddOnDetailsByHotel]    Script Date: 04/25/2016 00:18:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Description:	< Get add on details by hotel to show in reservation >
+-- =============================================
+ALTER PROCEDURE [hotels].[SP_GetAddOnDetailsByHotel]
+@hotelId numeric(18,0)
+AS
+BEGIN
+	Select [id_add_on]
+		  ,[id_hotel]
+		  ,[add_on_code]
+		  ,[add_on_desc]
+		  ,[add_on_type]
+		  ,[dining_type]
+		  ,[amount]
+		  ,[quantity]
+		  ,[long_desc]
+		  ,[priority]
+	 FROM [welcomgroup].[dbo].[b_add_on_detail] where [id_hotel] = @hotelId 
+     
+     SELECT [id_tax_detail]
+      ,[id_hotel]
+      ,[service_tax]
+      ,[luxury_tax]
+      ,[vat]
+      ,[rate_code]
+      ,[start_date]
+      ,[end_date]
+     FROM [welcomgroup].[dbo].[b_tax_detail] where [id_hotel] = @hotelId
+END
