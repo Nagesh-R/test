@@ -1,0 +1,24 @@
+USE [welcomgroup]
+GO
+/****** Object:  StoredProcedure [hotels].[SP_GetTaxDetailsByHotelId]    Script Date: 04/25/2016 00:33:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- ============================================
+-- Description:	<To get the >
+-- =============================================
+ALTER PROCEDURE [hotels].[SP_GetTaxDetailsByHotelId] 
+	@hotelId numeric(18,0)
+
+AS
+BEGIN
+	
+		Select td.id_tax_detail,td.service_tax,td.luxury_tax,td.vat,td.rate_code,convert(date,td.[start_date]) as [start_date],
+		convert(date,td.[end_date]) as end_date,bpr.amt_rspax1,bpr.amt_rspax2 from b_tax_detail td 
+		left outer join b_ratecategory br on td.rate_code = br.rate_code
+		left outer join b_plan bp on br.rate_code = bp.rate_code 
+		left outer join b_plan_rate bpr on bp.id_plan = bpr.id_plan
+		where td.id_hotel = @hotelId
+    
+END
