@@ -1,0 +1,49 @@
+USE [welcomgroup]
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK__r_booking__booki__745BB106]') AND parent_object_id = OBJECT_ID(N'[dbo].[r_booking_add_on_details]'))
+ALTER TABLE [dbo].[r_booking_add_on_details] DROP CONSTRAINT [FK__r_booking__booki__745BB106]
+GO
+
+USE [welcomgroup]
+GO
+
+/****** Object:  Table [dbo].[r_booking_add_on_details]    Script Date: 05/04/2016 14:19:45 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[r_booking_add_on_details]') AND type in (N'U'))
+DROP TABLE [dbo].[r_booking_add_on_details]
+GO
+
+USE [welcomgroup]
+GO
+
+/****** Object:  Table [dbo].[r_booking_add_on_details]    Script Date: 05/04/2016 14:19:45 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[r_booking_add_on_details](
+[id_booking_add_on] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+[booking_id] [numeric](18, 0) NOT NULL,
+[hotel_id] [varchar](30) NOT NULL,
+[add_on_code] [varchar](30) NULL,
+[add_on] [varchar](100) NULL,
+[add_on_type] [varchar](100) NULL,
+[add_on_desc] [varchar](255) NULL,
+[quantity] [numeric](18, 0) NULL,
+[amount] [numeric](18, 0) NULL,
+[tax_amount] [numeric](18, 0) NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+ALTER TABLE [dbo].[r_booking_add_on_details]  WITH CHECK ADD FOREIGN KEY([booking_id])
+REFERENCES [dbo].[ReservationDetails] ([Booking_Id])
+GO
